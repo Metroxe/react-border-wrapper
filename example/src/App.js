@@ -225,6 +225,7 @@ export default class App extends Component {
 							endAdornment: <InputAdornment position="end">px</InputAdornment>,
 						}}
 					/>
+					<br/>
 				</Paper>
 			</div>
 		);
