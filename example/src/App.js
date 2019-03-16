@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 
-import ExampleComponent from 'react-border-wrapper'
+import BorderWrapper from 'react-border-wrapper'
 
 export default class App extends Component {
   render () {
     return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
+      <div style={{margin: "50px"}}>
+        <BorderWrapper>
+          <h1>Hey there</h1>
+        </BorderWrapper>
       </div>
     )
   }

@@ -28,4 +28,4 @@ class Example extends React.Component {
 
 ## License
 
-MIT © [Metroxe](https://github.com/Metroxe)
+MIT © [Christopher Powroznik](https://github.com/Metroxe)
