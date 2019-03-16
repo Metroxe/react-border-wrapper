@@ -4,10 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-#label {
-  margin-top: 20px;
+.TextField {
+  margin: 10px !important;
 }
-
-/*.paperInput {*/
-  /*padding: 30px;*/
-/*}*/

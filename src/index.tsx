@@ -83,8 +83,10 @@ function determineLocations(props: Props): Positions {
 }
 
 function parsePercentage(float: number = 0.5): PositionPercent {
-	if (float > 1 || float < 0) {
-		throw new Error("Invalid position, must be between 0 and 1 (inclusive).")
+	if (float > 1) {
+		float = 1;
+	} else if (float < 0) {
+		float = 0;
 	}
 	return {primary: float * 100 + "%", secondary: (1 - float) * 100 + "%"}
 }
@@ -114,7 +116,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderTopColor: props.borderColour,
 						borderLeftColor: props.borderColour,
 						marginTop: props.topOffset,
-						marginLeft: props.leftOffset,
+						minHeight: props.topOffset,
 					}}
 				/>
 				<div
@@ -148,7 +150,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderTopColor: props.borderColour,
 						borderRightColor: props.borderColour,
 						marginTop: props.topOffset,
-						marginLeft: props.leftOffset,
+						minHeight: props.borderRadius,
 					}}
 				/>
 			</div>
@@ -215,8 +217,8 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderLeftWidth: props.borderWidth,
 						borderBottomColor: props.borderColour,
 						borderLeftColor: props.borderColour,
-						marginBottom: props.bottomOffset,
-						marginRight: props.rightOffset,
+						minHeight: props.borderRadius,
+						marginBottom: props.bottomOffset
 					}}
 				/>
 				<div
@@ -224,10 +226,14 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderBottom: props.borderType,
 						borderBottomWidth: props.borderWidth,
 						width: bottomPosition.primary,
-						marginRight: props.rightOffset,
+						marginBottom: props.bottomOffset
 					}}
 				/>
-				<div>
+				<div
+					style={{
+						alignSelf: "flex-end"
+					}}
+				>
 					{props.bottomElement}
 				</div>
 				<div
@@ -235,7 +241,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderBottom: props.borderType,
 						borderBottomWidth: props.borderWidth,
 						width: bottomPosition.secondary,
-						marginRight: props.rightOffset,
+						marginBottom: props.bottomOffset
 					}}
 				/>
 				<div
@@ -250,7 +256,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderBottomColor: props.borderColour,
 						borderRightColor: props.borderColour,
 						marginBottom: props.bottomOffset,
-						marginRight: props.rightOffset,
+						minHeight: props.borderRadius,
 					}}
 				/>
 			</div>

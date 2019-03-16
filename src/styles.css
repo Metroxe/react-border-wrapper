@@ -17,6 +17,10 @@
     flex-direction: column;
 }
 
+.ReactBorderWrapperBorderBottomElement {
+    align-self: flex-end;
+}
+
 .ReactBorderWrapperCorner {
     display: flex;
 }

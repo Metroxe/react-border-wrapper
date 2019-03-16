@@ -3,26 +3,26 @@ import BorderWrapper from "react-border-wrapper";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Slider from "@material-ui/lab/Slider";
-import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 export default class App extends Component {
 
 	state = {
-		topPosition: 0.5,
-		rightPosition: 0.5,
-		bottomPosition: 0.5,
-		leftPosition: 0.5
+		topPosition: 0.1,
+		rightPosition: 0.1,
+		bottomPosition: 0.9,
+		leftPosition: 0.9,
+		topOffset: 8,
+		rightOffset: 2,
+		bottomOffset: 8,
+		leftOffset: 2,
 	};
 
-	createSliderOnChange = (key) => {
-		return (event, value) => {
-			this.setState({[key]: value}, () => {
-				console.log(this.state);
-			});
+	createOnChange = (key) => {
+		return (event) => {
+			this.setState({[key]: event.target.value})
 		};
 	};
 
@@ -43,21 +43,25 @@ export default class App extends Component {
 							<p style={{margin: 0}}>Logo</p>
 						}
 						topPosition={this.state.topPosition}
+						topOffset={this.state.topOffset + "px"}
 
 						rightElement={
 							<p style={{margin: 0}}>L<br/>o<br/>g<br/>o</p>
 						}
 						rightPosition={this.state.rightPosition}
+						rightOffset={this.state.rightOffset + "px"}
 
 						bottomElement={
 							<p style={{margin: 0}}>Logo</p>
 						}
 						bottomPosition={this.state.bottomPosition}
+						bottomOffset={this.state.bottomOffset + "px"}
 
 						leftElement={
 							<p style={{margin: 0}}>L<br/>o<br/>g<br/>o</p>
 						}
 						leftPosition={this.state.leftPosition}
+						leftOffset={this.state.leftOffset + "px"}
 
 						innerPadding="50px"
 					>
@@ -66,67 +70,97 @@ export default class App extends Component {
 					</BorderWrapper>
 				</Paper>
 
-				<Paper>
-					<Grid
-						container
-						spacing={24}
-					>
-						<Grid item sm={4}>
-							<Typography id="label">Top Position: {this.state.topPosition}</Typography>
-							<Slider
-								aria-labelledby="label"
-								onChange={this.createSliderOnChange("topPosition")}
-								value={this.state.topPosition}
-								max={1}
-								min={0}
-								step={0.01}
-								aria-valuetext={this.state.topPosition}
-							/>
-							<Typography id="label">Right Position: {this.state.rightPosition}</Typography>
-							<Slider
-								className="inputMargin"
-								aria-labelledby="label"
-								onChange={this.createSliderOnChange("rightPosition")}
-								value={this.state.rightPosition}
-								max={1}
-								min={0}
-								step={0.01}
-								aria-valuetext={this.state.rightPosition}
-							/>
-							<Typography id="label">Bottom Position: {this.state.bottomPosition}</Typography>
-							<Slider
-								className="inputMargin"
-								aria-labelledby="label"
-								onChange={this.createSliderOnChange("bottomPosition")}
-								value={this.state.bottomPosition}
-								max={1}
-								min={0}
-								step={0.01}
-								aria-valuetext={this.state.bottomPosition}
-							/>
-							<Typography id="label">Left Position: {this.state.leftPosition}</Typography>
-							<Slider
-								className="inputMargin"
-								aria-labelledby="label"
-								onChange={this.createSliderOnChange("leftPosition")}
-								value={this.state.leftPosition}
-								max={1}
-								min={0}
-								step={0.01}
-								aria-valuetext={this.state.leftPosition}
-							/>
-						</Grid>
-						<Grid item sm={4}>
-							<TextField
-								id="standard-name"
-								label="Name"
-								value={this.state.name}
-								onChange={this.handleChange('name')}
-								margin="normal"
-							/>
-							<Divider/>
-						</Grid>
-					</Grid>
+				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Top Position"
+						type="number"
+						value={this.state.topPosition.toString(10)}
+						onChange={this.createOnChange("topPosition")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">flex</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Right Position"
+						type="number"
+						value={this.state.rightPosition.toString(10)}
+						onChange={this.createOnChange("rightPosition")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">flex</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Bottom Position"
+						type="number"
+						value={this.state.bottomPosition.toString(10)}
+						onChange={this.createOnChange("bottomPosition")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">flex</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Left Position"
+						type="number"
+						value={this.state.leftPosition.toString(10)}
+						onChange={this.createOnChange("leftPosition")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">flex</InputAdornment>,
+						}}
+					/>
+					<br/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Top Offset"
+						type="number"
+						value={this.state.topOffset.toString(10)}
+						onChange={this.createOnChange("topOffset")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Right Offset"
+						type="number"
+						value={this.state.rightOffset.toString(10)}
+						onChange={this.createOnChange("rightOffset")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Bottom Offset"
+						type="number"
+						value={this.state.bottomOffset.toString(10)}
+						onChange={this.createOnChange("bottomOffset")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Left Offset"
+						type="number"
+						value={this.state.leftOffset.toString(10)}
+						onChange={this.createOnChange("leftOffset")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+						}}
+					/>
+					<br/>
 				</Paper>
 			</div>
 		);
