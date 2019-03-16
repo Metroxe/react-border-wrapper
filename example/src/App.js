@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import MenuItem from "@material-ui/core/MenuItem";
 
 export default class App extends Component {
 
@@ -28,7 +30,7 @@ export default class App extends Component {
 		showBottom: true,
 		colour: "#000000",
 		borderWidth: 5,
-		innerPadding: 50,
+		innerPadding: 50
 	};
 
 	horizontalImage = (
@@ -53,14 +55,15 @@ export default class App extends Component {
 
 	createOnChange = (key) => {
 		return (event) => {
-			this.setState({[key]: event.target.value})
+			this.setState({[key]: event.target.value});
 		};
 	};
 
 	render() {
 		return (
-			<div>
-				<AppBar position="static" color="default">
+			<Paper>
+				<CssBaseline/>
+				<AppBar position="static" color="primary">
 					<Toolbar>
 						<Typography variant="h6" color="inherit">
 							React Border Wrapper
@@ -103,12 +106,40 @@ export default class App extends Component {
 					<TextField
 						className="TextField"
 						variant="outlined"
+						select={true}
+						label="Select"
+						value={"bud"}
+						margin="normal"
+						onChange={this.createOnChange("showTop")}
+					>
+						<MenuItem key={"True"} value={true}>
+							True
+						</MenuItem>
+						<MenuItem key={"False"} value={false}>
+							False
+						</MenuItem>
+					</TextField>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Colour"
+						type="text"
+						select
+						value={this.state.colour}
+						onChange={this.createOnChange("colour")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">#</InputAdornment>
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
 						label="Colour"
 						type="text"
 						value={this.state.colour}
 						onChange={this.createOnChange("colour")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">#</InputAdornment>,
+							endAdornment: <InputAdornment position="end">#</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -119,7 +150,7 @@ export default class App extends Component {
 						value={this.state.borderWidth.toString(10)}
 						onChange={this.createOnChange("borderWidth")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -130,7 +161,7 @@ export default class App extends Component {
 						value={this.state.innerPadding.toString(10)}
 						onChange={this.createOnChange("innerPadding")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -141,7 +172,7 @@ export default class App extends Component {
 						value={this.state.topPosition.toString(10)}
 						onChange={this.createOnChange("topPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">%</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -152,7 +183,7 @@ export default class App extends Component {
 						value={this.state.rightPosition.toString(10)}
 						onChange={this.createOnChange("rightPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">%</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -163,7 +194,7 @@ export default class App extends Component {
 						value={this.state.bottomPosition.toString(10)}
 						onChange={this.createOnChange("bottomPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">%</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -174,7 +205,7 @@ export default class App extends Component {
 						value={this.state.leftPosition.toString(10)}
 						onChange={this.createOnChange("leftPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">%</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -185,7 +216,7 @@ export default class App extends Component {
 						value={this.state.topOffset.toString(10)}
 						onChange={this.createOnChange("topOffset")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -196,7 +227,7 @@ export default class App extends Component {
 						value={this.state.rightOffset.toString(10)}
 						onChange={this.createOnChange("rightOffset")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -207,7 +238,7 @@ export default class App extends Component {
 						value={this.state.bottomOffset.toString(10)}
 						onChange={this.createOnChange("bottomOffset")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -218,7 +249,7 @@ export default class App extends Component {
 						value={this.state.leftOffset.toString(10)}
 						onChange={this.createOnChange("leftOffset")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -229,7 +260,7 @@ export default class App extends Component {
 						value={this.state.topGap.toString(10)}
 						onChange={this.createOnChange("topGap")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -240,7 +271,7 @@ export default class App extends Component {
 						value={this.state.rightGap.toString(10)}
 						onChange={this.createOnChange("rightGap")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -251,7 +282,7 @@ export default class App extends Component {
 						value={this.state.bottomGap.toString(10)}
 						onChange={this.createOnChange("bottomGap")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -262,11 +293,15 @@ export default class App extends Component {
 						value={this.state.leftGap.toString(10)}
 						onChange={this.createOnChange("leftGap")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 				</Paper>
-			</div>
+
+				{/*<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>*/}
+					{/**/}
+				{/*</Paper>*/}
+			</Paper>
 		);
 	}
 }
