@@ -1,3 +1,7 @@
 .ReactBorderWrapperParent {
-  display: inline-block;
+    display: inline-block;
+}
+
+.ReactBorderWrapperBorderParent {
+    display: flex;
 }

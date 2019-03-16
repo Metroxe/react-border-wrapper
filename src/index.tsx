@@ -2,6 +2,8 @@ import * as React from 'react'
 import styles from './styles.css'
 import {ReactNode} from "react";
 import {CSSProperties} from "react";
+import {LineStyle} from "csstype";
+import {createBorder} from "./createBorder";
 
 export type Props = {
 	children?: ReactNode;
@@ -11,18 +13,24 @@ export type Props = {
 	borderWidth?: number | string;
 	borderRadius?: number | string;
 	borderColour?: string;
+	borderType?: LineStyle
+	elementPadding?: string | number;
 
 	topElement?: ReactNode;
 	topPosition?: string | number;
+	topOffset?: string | number;
 
 	rightElement?: ReactNode;
 	rightPosition?: string | number;
+	rightOffset?: string | number;
 
 	bottomElement?: ReactNode;
 	bottomPosition?: string | number;
+	bottomOffset?: string | number;
 
 	leftElement?: ReactNode;
 	leftPosition?: string | number;
+	leftOffset?: string | number;
 }
 
 type Positions = {
@@ -42,7 +50,7 @@ function determineChildStyle(props: Props, positions: Positions): CSSProperties 
 		padding: props.innerPadding,
 		borderRadius: props.innerPadding,
 		borderColor: props.borderColour,
-		border: "solid",
+		border: props.borderType,
 
 		// Radius
 		borderTopRightRadius: positions.topRight ? 0 : props.borderRadius,
@@ -73,27 +81,7 @@ function determineLocations(props: Props): Positions {
 	const bottomRight: boolean = right || bottom;
 	const bottomLeft: boolean = bottom || left;
 	const topLeft: boolean = left || top;
-	return {
-		top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft,
-	}
-}
-
-function createBorder(props: Props, loc: "top" | "right" | "bottom" | "left"): ReactNode {
-
-	const element: ReactNode = props[loc + "Element"];
-	// const position: number | string = props[loc + "Position"];
-
-	const parentStyle: CSSProperties = {};
-	const firstStyle: CSSProperties = {};
-	const lastStyle: CSSProperties = {};
-
-	return (
-		<div style={parentStyle}>
-			<div style={firstStyle}/>
-			{element}
-			<div style={lastStyle}/>
-		</div>
-	)
+	return {top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft}
 }
 
 const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.Element => {
@@ -123,7 +111,12 @@ ReactBorderWrapper.defaultProps = {
 	borderWidth: "4px",
 	innerPadding: "20px",
 	borderRadius: "15px",
-	borderColour: "#000000"
+	borderColour: "#000000",
+	borderType: "solid",
+	topOffset: "10px",
+	rightOffset: "10px",
+	bottomOffset: "10px",
+	leftOffset: "10px",
 };
 
 export default ReactBorderWrapper
