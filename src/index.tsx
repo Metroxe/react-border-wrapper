@@ -3,6 +3,7 @@ import styles from './styles.css'
 import {ReactNode} from "react";
 import {CSSProperties} from "react";
 import {LineStyle} from "csstype";
+import * as PropTypes from "prop-types";
 
 export type Props = {
 	children?: ReactNode;
@@ -256,6 +257,28 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 		</div>
 	)
 };
+
+ReactBorderWrapper.propTypes = {
+	children: PropTypes.element,
+	style: PropTypes.object,
+	innerPadding: PropTypes.oneOf(["number", "string"]),
+	borderWidth: PropTypes.oneOf(["number", "string"]),
+	borderRadius: PropTypes.oneOf(["number", "string"]),
+	borderColour: PropTypes.string,
+	borderType: PropTypes.string,
+	topElement: PropTypes.element,
+	topPosition: PropTypes.number,
+	topOffset: PropTypes.oneOf(["number", "string"]),
+	rightElement: PropTypes.element,
+	rightPosition: PropTypes.number,
+	rightOffset: PropTypes.oneOf(["number", "string"]),
+	bottomElement: PropTypes.element,
+	bottomPosition: PropTypes.number,
+	bottomOffset: PropTypes.oneOf(["number", "string"]),
+	leftElement: PropTypes.element,
+	leftPosition: PropTypes.number,
+	leftOffset: PropTypes.oneOf(["number", "string"]),
+} as { [key in keyof Props]: any };
 
 ReactBorderWrapper.defaultProps = {
 	borderWidth: "4px",
