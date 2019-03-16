@@ -3,3 +3,11 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#label {
+  margin-top: 20px;
+}
+
+/*.paperInput {*/
+  /*padding: 30px;*/
+/*}*/
