@@ -27,6 +27,8 @@ export default class App extends Component {
 		showRight: true,
 		showBottom: true,
 		colour: "#000000",
+		borderWidth: 5,
+		innerPadding: 50,
 	};
 
 	horizontalImage = (
@@ -69,6 +71,8 @@ export default class App extends Component {
 				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
 					<BorderWrapper
 						borderColour={this.state.colour}
+						borderWidth={this.state.borderWidth + "px"}
+						innerPadding={this.state.innerPadding + "px"}
 
 						topElement={this.state.showTop ? this.horizontalImage : undefined}
 						topPosition={this.state.topPosition}
@@ -89,8 +93,6 @@ export default class App extends Component {
 						leftPosition={this.state.leftPosition}
 						leftOffset={this.state.leftOffset + "px"}
 						leftGap={this.state.leftGap + "px"}
-
-						innerPadding="50px"
 					>
 						<h1 style={{margin: 0}}>Hey there</h1>
 						<h2 style={{margin: 0}}>I'm Rockin a Sitch</h2>
@@ -107,6 +109,28 @@ export default class App extends Component {
 						onChange={this.createOnChange("colour")}
 						InputProps={{
 							endAdornment: <InputAdornment position="end">#</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Border Width"
+						type="number"
+						value={this.state.borderWidth.toString(10)}
+						onChange={this.createOnChange("borderWidth")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Inner Padding"
+						type="number"
+						value={this.state.innerPadding.toString(10)}
+						onChange={this.createOnChange("innerPadding")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
 						}}
 					/>
 					<TextField
