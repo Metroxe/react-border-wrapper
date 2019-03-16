@@ -21,6 +21,10 @@
     align-self: flex-end;
 }
 
+.ReactBorderWrapperBorderRightElement {
+    align-self: flex-end;
+}
+
 .ReactBorderWrapperCorner {
     display: flex;
 }
