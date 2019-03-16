@@ -15,10 +15,34 @@ export default class App extends Component {
 		bottomPosition: 0.9,
 		leftPosition: 0.9,
 		topOffset: 8,
-		rightOffset: 2,
+		rightOffset: 8,
 		bottomOffset: 8,
-		leftOffset: 2,
+		leftOffset: 8,
+		topGap: 4,
+		rightGap: 4,
+		bottomGap: 4,
+		leftGap: 4,
 	};
+
+	horizontalImage = (
+		<div style={{width: "100px"}}>
+			<img
+				style={{width: "100px"}}
+				src="https://via.placeholder.com/2000x400.png?text=Your+Logo"
+				alt="Placeholder"
+			/>
+		</div>
+	);
+
+	verticalImage = (
+		<div style={{height: "100px"}}>
+			<img
+				style={{height: "100px"}}
+				src="https://via.placeholder.com/400x2000.png?text=Your+Logo"
+				alt="Placeholder"
+			/>
+		</div>
+	);
 
 	createOnChange = (key) => {
 		return (event) => {
@@ -39,29 +63,25 @@ export default class App extends Component {
 
 				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
 					<BorderWrapper
-						topElement={
-							<p style={{margin: 0}}>Logo</p>
-						}
+						topElement={this.horizontalImage}
 						topPosition={this.state.topPosition}
 						topOffset={this.state.topOffset + "px"}
+						topGap={this.state.topGap + "px"}
 
-						rightElement={
-							<p style={{margin: 0}}>L<br/>o<br/>g<br/>o</p>
-						}
+						rightElement={this.verticalImage}
 						rightPosition={this.state.rightPosition}
 						rightOffset={this.state.rightOffset + "px"}
+						rightGap={this.state.rightGap + "px"}
 
-						bottomElement={
-							<p style={{margin: 0}}>Logo</p>
-						}
+						bottomElement={this.horizontalImage}
 						bottomPosition={this.state.bottomPosition}
 						bottomOffset={this.state.bottomOffset + "px"}
+						bottomGap={this.state.bottomGap + "px"}
 
-						leftElement={
-							<p style={{margin: 0}}>L<br/>o<br/>g<br/>o</p>
-						}
+						leftElement={this.verticalImage}
 						leftPosition={this.state.leftPosition}
 						leftOffset={this.state.leftOffset + "px"}
+						leftGap={this.state.leftGap + "px"}
 
 						innerPadding="50px"
 					>
@@ -161,6 +181,50 @@ export default class App extends Component {
 						}}
 					/>
 					<br/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Top Gap"
+						type="number"
+						value={this.state.topGap.toString(10)}
+						onChange={this.createOnChange("topGap")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Right Gap"
+						type="number"
+						value={this.state.rightGap.toString(10)}
+						onChange={this.createOnChange("rightGap")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Bottom Gap"
+						type="number"
+						value={this.state.bottomGap.toString(10)}
+						onChange={this.createOnChange("bottomGap")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Left Gap"
+						type="number"
+						value={this.state.leftGap.toString(10)}
+						onChange={this.createOnChange("leftGap")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+						}}
+					/>
 				</Paper>
 			</div>
 		);
