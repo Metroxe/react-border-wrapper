@@ -4,8 +4,19 @@
 
 .ReactBorderWrapperBorderChildren {
     display: flex;
+    flex-direction: row;
 }
 
-.ReactBorderWrapperBorderParent {
+.ReactBorderWrapperBorderHorizontalParent {
+    display: flex;
+    flex-direction: row;
+}
+
+.ReactBorderWrapperBorderVerticalParent {
+    display: flex;
+    flex-direction: column;
+}
+
+.ReactBorderWrapperCorner {
     display: flex;
 }

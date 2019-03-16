@@ -38,7 +38,7 @@ export function createBorder(props: Props, loc: "top" | "right" | "bottom" | "le
 			position = parsePosition(props.topPosition);
 			paddingKey = "paddingLeft";
 			lengthKey = "width";
-			flexDirection = invert ? "row-reverse" : "row";
+			flexDirection = "row";
 			firstRadiusKey = "borderTopLeftRadius";
 			lastRadiusKey = "borderTopRightRadius";
 			borderPrimaryWidthKey = "borderTopWidth";
@@ -56,7 +56,7 @@ export function createBorder(props: Props, loc: "top" | "right" | "bottom" | "le
 			position = parsePosition(props.rightPosition);
 			paddingKey = "paddingRight";
 			lengthKey = "height";
-			flexDirection = invert ? "column-reverse" : "column";
+			flexDirection = "column";
 			firstRadiusKey = "borderTopRightRadius";
 			lastRadiusKey = "borderBottomRightRadius";
 			borderPrimaryWidthKey = "borderRightWidth";
@@ -74,9 +74,9 @@ export function createBorder(props: Props, loc: "top" | "right" | "bottom" | "le
 			position = parsePosition(props.bottomPosition);
 			paddingKey = "paddingBottom";
 			lengthKey = "width";
-			flexDirection = invert ? "row-reverse" : "row";
-			firstRadiusKey = invert ? "borderBottomRightRadius" : "borderBottomLeftRadius";
-			lastRadiusKey = invert ? "borderBottomLeftRadius" : "borderBottomRightRadius";
+			flexDirection = "row";
+			firstRadiusKey = "borderBottomLeftRadius";
+			lastRadiusKey = "borderBottomRightRadius";
 			borderPrimaryWidthKey = "borderBottomWidth";
 			borderPrimaryColourKey = "borderBottomColor";
 			borderSecondaryWidthKey = "borderLeftWidth";
@@ -92,8 +92,8 @@ export function createBorder(props: Props, loc: "top" | "right" | "bottom" | "le
 			position = parsePosition(props.leftPosition);
 			paddingKey = "paddingTop";
 			lengthKey = "height";
-			flexDirection = invert ? "column-reverse" : "column";
-			firstRadiusKey = invert ? "borderBottomLeftRadius" : "borderTopLeftRadius";
+			flexDirection = "column";
+			firstRadiusKey = "borderTopLeftRadius";
 			lastRadiusKey = "borderBottomLeftRadius";
 			borderPrimaryWidthKey = "borderLeftWidth";
 			borderPrimaryColourKey = "borderLeftColor";
@@ -119,7 +119,7 @@ export function createBorder(props: Props, loc: "top" | "right" | "bottom" | "le
 		[borderPrimaryColourKey]: props.borderColour,
 		[borderSecondaryWidthKey]: props.borderWidth,
 		[borderSecondaryColourKey]: props.borderColour,
-		[paddingKey]: parsePosition(position),
+		// [paddingKey]: parsePosition(position),
 		[firstRadiusKey]: (top || bottom) ? props.borderRadius : 0,
 		[marginKey]: marginValue,
 	};
@@ -141,7 +141,7 @@ export function createBorder(props: Props, loc: "top" | "right" | "bottom" | "le
 	const elementStyle: CSSProperties = {};
 	if (invert) {
 		return (
-			<div className={styles.ReactBorderWrapperBorderParent} style={parentStyle}>
+			<div className={styles.ReactBorderWrapperParent} style={parentStyle}>
 				<div style={firstStyle}/>
 				<div style={elementStyle}>
 					{element}

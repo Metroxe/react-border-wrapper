@@ -3,7 +3,6 @@ import styles from './styles.css'
 import {ReactNode} from "react";
 import {CSSProperties} from "react";
 import {LineStyle} from "csstype";
-import {createBorder} from "./createBorder";
 
 export type Props = {
 	children?: ReactNode;
@@ -14,27 +13,22 @@ export type Props = {
 	borderRadius?: number | string;
 	borderColour?: string;
 	borderType?: LineStyle
-	elementPadding?: string | number;
 
 	topElement?: ReactNode;
-	topPosition?: string | number;
+	topPosition?: number;
 	topOffset?: string | number;
-	topInvertSide? : boolean;
 
 	rightElement?: ReactNode;
-	rightPosition?: string | number;
+	rightPosition?: number;
 	rightOffset?: string | number;
-	rightInvertSide? : boolean;
 
 	bottomElement?: ReactNode;
-	bottomPosition?: string | number;
+	bottomPosition?: number;
 	bottomOffset?: string | number;
-	bottomInvertSide? : boolean;
 
 	leftElement?: ReactNode;
-	leftPosition?: string | number;
+	leftPosition?: number;
 	leftOffset?: string | number;
-	leftInvertSide? : boolean;
 }
 
 type Positions = {
@@ -46,6 +40,11 @@ type Positions = {
 	bottomRight: boolean,
 	bottomLeft: boolean,
 	topLeft: boolean,
+}
+
+type PositionPercent = {
+	primary: string;
+	secondary: string;
 }
 
 function determineChildStyle(props: Props, positions: Positions): CSSProperties {
@@ -67,12 +66,6 @@ function determineChildStyle(props: Props, positions: Positions): CSSProperties 
 		borderRightWidth: positions.right ? 0 : props.borderWidth,
 		borderBottomWidth: positions.bottom ? 0 : props.borderWidth,
 		borderLeftWidth: positions.left ? 0 : props.borderWidth,
-
-		// Padding
-		// paddingTop: positions.top ? 0 : props.innerPadding,
-		// paddingRight: positions.right ? 0 : props.innerPadding,
-		// paddingBottom: positions.bottom ? 0 : props.innerPadding,
-		// paddingLeft: positions.left ? 0 : props.innerPadding,
 	}
 }
 
@@ -88,29 +81,178 @@ function determineLocations(props: Props): Positions {
 	return {top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft}
 }
 
+function parsePercentage(float: number = 0.5): PositionPercent {
+	if (float > 1 || float < 0) {
+		throw new Error("Invalid position, must be between 0 and 1 (inclusive).")
+	}
+	return {primary: float * 100 + "%", secondary: (1 - float) * 100 + "%"}
+}
+
 const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.Element => {
 
 	const positions: Positions = determineLocations(props);
 	const childrenStyle: CSSProperties = determineChildStyle(props, positions);
-	const children: ReactNode = (
-		<div style={childrenStyle}>
-			{props.children}
-		</div>
-	);
-	const topBorder: ReactNode = positions.top && createBorder(props, "top");
-	const rightBorder: ReactNode = positions.right && createBorder(props, "right");
-	const bottomBorder: ReactNode = positions.bottom && createBorder(props, "bottom");
-	const leftBorder: ReactNode = positions.left && createBorder(props, "left");
+	const topPosition: PositionPercent = parsePercentage(props.topPosition);
+	const rightPosition: PositionPercent = parsePercentage(props.rightPosition);
+	const bottomPosition: PositionPercent = parsePercentage(props.bottomPosition);
+	const leftPosition: PositionPercent = parsePercentage(props.leftPosition);
 
 	return (
 		<div className={styles.ReactBorderWrapperParent} style={props.style}>
-			{topBorder}
-			<div className={styles.ReactBorderWrapperBorderChildren}>
-				{leftBorder}
-				{children}
-				{rightBorder}
+
+			<div className={styles.ReactBorderWrapperBorderHorizontalParent}>
+				<div
+					className={styles.ReactBorderWrapperCorner}
+					style={{
+						borderTopLeftRadius: props.borderRadius,
+						width: props.borderRadius,
+						borderTop: props.borderType,
+						borderLeft: props.borderType,
+						borderTopWidth: props.borderWidth,
+						borderLeftWidth: props.borderWidth,
+						borderTopColor: props.borderColour,
+						borderLeftColor: props.borderColour,
+						marginTop: props.topOffset,
+						marginLeft: props.leftOffset,
+					}}
+				/>
+				<div
+					style={{
+						borderTop: props.borderType,
+						borderTopWidth: props.borderWidth,
+						width: topPosition.primary,
+						marginTop: props.topOffset
+					}}
+				/>
+				<div>
+					{props.topElement}
+				</div>
+				<div
+					style={{
+						borderTop: props.borderType,
+						borderTopWidth: props.borderWidth,
+						width: topPosition.secondary,
+						marginTop: props.topOffset
+					}}
+				/>
+				<div
+					className={styles.ReactBorderWrapperCorner}
+					style={{
+						borderTopRightRadius: props.borderRadius,
+						width: props.borderRadius,
+						borderTop: props.borderType,
+						borderRight: props.borderType,
+						borderTopWidth: props.borderWidth,
+						borderRightWidth: props.borderWidth,
+						borderTopColor: props.borderColour,
+						borderRightColor: props.borderColour,
+						marginTop: props.topOffset,
+						marginLeft: props.leftOffset,
+					}}
+				/>
 			</div>
-			{bottomBorder}
+
+			<div className={styles.ReactBorderWrapperBorderChildren}>
+
+				<div className={styles.ReactBorderWrapperBorderVerticalParent}>
+					<div
+						style={{
+							borderLeft: props.borderType,
+							borderLeftWidth: props.borderWidth,
+							height: leftPosition.primary,
+						}}
+					/>
+					<div>
+						{props.leftElement}
+					</div>
+					<div
+						style={{
+							borderLeft: props.borderType,
+							borderLeftWidth: props.borderWidth,
+							height: leftPosition.secondary,
+						}}
+					/>
+				</div>
+
+				<div style={childrenStyle}>
+					{props.children}
+				</div>
+
+				<div className={styles.ReactBorderWrapperBorderVerticalParent}>
+					<div
+						style={{
+							borderRight: props.borderType,
+							borderRightWidth: props.borderWidth,
+							height: rightPosition.primary,
+							marginLeft: props.leftOffset,
+						}}
+					/>
+					<div>
+						{props.rightElement}
+					</div>
+					<div
+						style={{
+							borderRight: props.borderType,
+							borderRightWidth: props.borderWidth,
+							height: rightPosition.secondary,
+							marginLeft: props.rightOffset,
+						}}
+					/>
+				</div>
+
+			</div>
+
+			<div className={styles.ReactBorderWrapperBorderHorizontalParent}>
+				<div
+					style={{
+						borderBottomLeftRadius: props.borderRadius,
+						width: props.borderRadius,
+						height: props.borderRadius,
+						borderBottom: props.borderType,
+						borderLeft: props.borderType,
+						borderBottomWidth: props.borderWidth,
+						borderLeftWidth: props.borderWidth,
+						borderBottomColor: props.borderColour,
+						borderLeftColor: props.borderColour,
+						marginBottom: props.bottomOffset,
+						marginRight: props.rightOffset,
+					}}
+				/>
+				<div
+					style={{
+						borderBottom: props.borderType,
+						borderBottomWidth: props.borderWidth,
+						width: bottomPosition.primary,
+						marginRight: props.rightOffset,
+					}}
+				/>
+				<div>
+					{props.bottomElement}
+				</div>
+				<div
+					style={{
+						borderBottom: props.borderType,
+						borderBottomWidth: props.borderWidth,
+						width: bottomPosition.secondary,
+						marginRight: props.rightOffset,
+					}}
+				/>
+				<div
+					style={{
+						borderBottomRightRadius: props.borderRadius,
+						width: props.borderRadius,
+						height: props.borderRadius,
+						borderBottom: props.borderType,
+						borderRight: props.borderType,
+						borderBottomWidth: props.borderWidth,
+						borderRightWidth: props.borderWidth,
+						borderBottomColor: props.borderColour,
+						borderRightColor: props.borderColour,
+						marginBottom: props.bottomOffset,
+						marginRight: props.rightOffset,
+					}}
+				/>
+			</div>
 		</div>
 	)
 };
@@ -121,15 +263,10 @@ ReactBorderWrapper.defaultProps = {
 	borderRadius: "15px",
 	borderColour: "#000000",
 	borderType: "solid",
-	topOffset: "10px",
-	rightOffset: "10px",
-	bottomOffset: "10px",
-	leftOffset: "10px",
-
-	topInvertSide: false,
-	leftInvertSide: false,
-	rightInvertSide: false,
-	bottomInvertSide: false,
+	topOffset: "0px",
+	rightOffset: "0px",
+	bottomOffset: "0px",
+	leftOffset: "0px",
 };
 
 export default ReactBorderWrapper

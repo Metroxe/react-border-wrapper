@@ -11,7 +11,7 @@ export default class App extends Component {
 						<p style={{margin: 0}}>Logo</p>
 					}
 					leftElement={
-						<p style={{margin: 0}}>Logo</p>
+						<p style={{margin: 0}}>L<br/>o<br/>g<br/>o</p>
 					}
 					leftInvertSide={true}
 					bottomElement={
@@ -19,7 +19,7 @@ export default class App extends Component {
 					}
 					bottomInvertSide={true}
 					rightElement={
-						<p style={{margin: 0, padding: 0}}>Logo</p>
+						<p style={{margin: 0}}>L<br/>o<br/>g<br/>o</p>
 					}
 					innerPadding="50px"
 				>
