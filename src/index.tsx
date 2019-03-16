@@ -92,7 +92,6 @@ function parsePercentage(float: number = 0.5): PositionPercent {
 	} else if (float < 0) {
 		float = 0;
 	}
-	console.log({primary: Math.round(float * 100) + "%", secondary: Math.round((1 - float) * 100) + "%"});
 	return {primary: Math.round(float * 100) + "%", secondary: Math.round((1 - float) * 100) + "%"}
 }
 
@@ -129,6 +128,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					style={{
 						borderTop: props.borderType,
 						borderTopWidth: props.borderWidth,
+						borderTopColor: props.borderColour,
 						width: topPosition.primary,
 						marginTop: props.topOffset
 					}}
@@ -145,6 +145,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					style={{
 						borderTop: props.borderType,
 						borderTopWidth: props.borderWidth,
+						borderTopColor: props.borderColour,
 						width: topPosition.secondary,
 						marginTop: props.topOffset
 					}}
@@ -174,6 +175,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						style={{
 							borderLeft: props.borderType,
 							borderLeftWidth: props.borderWidth,
+							borderLeftColor: props.borderColour,
 							height: leftPosition.primary,
 							marginLeft: props.leftOffset
 						}}
@@ -191,6 +193,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						style={{
 							borderLeft: props.borderType,
 							borderLeftWidth: props.borderWidth,
+							borderLeftColor: props.borderColour,
 							height: leftPosition.secondary,
 							marginLeft: props.leftOffset
 						}}
@@ -205,6 +208,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					<div
 						style={{
 							borderRight: props.borderType,
+							borderRightColor: props.borderColour,
 							borderRightWidth: props.borderWidth,
 							height: rightPosition.primary,
 							marginRight: props.rightOffset,
@@ -222,6 +226,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					<div
 						style={{
 							borderRight: props.borderType,
+							borderRightColor: props.borderColour,
 							borderRightWidth: props.borderWidth,
 							height: rightPosition.secondary,
 							marginRight: props.rightOffset,
@@ -252,6 +257,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					style={{
 						borderBottom: props.borderType,
 						borderBottomWidth: props.borderWidth,
+						borderBottomColor: props.borderColour,
 						width: bottomPosition.primary,
 						marginBottom: props.bottomOffset
 					}}
@@ -269,6 +275,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					style={{
 						borderBottom: props.borderType,
 						borderBottomWidth: props.borderWidth,
+						borderBottomColor: props.borderColour,
 						width: bottomPosition.secondary,
 						marginBottom: props.bottomOffset
 					}}

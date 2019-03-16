@@ -22,6 +22,11 @@ export default class App extends Component {
 		rightGap: 4,
 		bottomGap: 4,
 		leftGap: 4,
+		showTop: true,
+		showLeft: true,
+		showRight: true,
+		showBottom: true,
+		colour: "#000000",
 	};
 
 	horizontalImage = (
@@ -63,22 +68,24 @@ export default class App extends Component {
 
 				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
 					<BorderWrapper
-						topElement={this.horizontalImage}
+						borderColour={this.state.colour}
+
+						topElement={this.state.showTop ? this.horizontalImage : undefined}
 						topPosition={this.state.topPosition}
 						topOffset={this.state.topOffset + "px"}
 						topGap={this.state.topGap + "px"}
 
-						rightElement={this.verticalImage}
+						rightElement={this.state.showRight ? this.verticalImage : undefined}
 						rightPosition={this.state.rightPosition}
 						rightOffset={this.state.rightOffset + "px"}
 						rightGap={this.state.rightGap + "px"}
 
-						bottomElement={this.horizontalImage}
+						bottomElement={this.state.showBottom ? this.horizontalImage : undefined}
 						bottomPosition={this.state.bottomPosition}
 						bottomOffset={this.state.bottomOffset + "px"}
 						bottomGap={this.state.bottomGap + "px"}
 
-						leftElement={this.verticalImage}
+						leftElement={this.state.showLeft ? this.verticalImage : undefined}
 						leftPosition={this.state.leftPosition}
 						leftOffset={this.state.leftOffset + "px"}
 						leftGap={this.state.leftGap + "px"}
@@ -91,6 +98,17 @@ export default class App extends Component {
 				</Paper>
 
 				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Colour"
+						type="text"
+						value={this.state.colour}
+						onChange={this.createOnChange("colour")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">#</InputAdornment>,
+						}}
+					/>
 					<TextField
 						className="TextField"
 						variant="outlined"
@@ -135,7 +153,6 @@ export default class App extends Component {
 							endAdornment: <InputAdornment position="end">%</InputAdornment>,
 						}}
 					/>
-					<br/>
 					<TextField
 						className="TextField"
 						variant="outlined"
@@ -180,7 +197,6 @@ export default class App extends Component {
 							endAdornment: <InputAdornment position="end">px</InputAdornment>,
 						}}
 					/>
-					<br/>
 					<TextField
 						className="TextField"
 						variant="outlined"
@@ -225,7 +241,6 @@ export default class App extends Component {
 							endAdornment: <InputAdornment position="end">px</InputAdornment>,
 						}}
 					/>
-					<br/>
 				</Paper>
 			</div>
 		);
