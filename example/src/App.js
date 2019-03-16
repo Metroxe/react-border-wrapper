@@ -79,7 +79,7 @@ export default class App extends Component {
 						value={this.state.topPosition.toString(10)}
 						onChange={this.createOnChange("topPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">flex</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>,
 						}}
 					/>
 					<TextField
@@ -90,7 +90,7 @@ export default class App extends Component {
 						value={this.state.rightPosition.toString(10)}
 						onChange={this.createOnChange("rightPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">flex</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>,
 						}}
 					/>
 					<TextField
@@ -101,7 +101,7 @@ export default class App extends Component {
 						value={this.state.bottomPosition.toString(10)}
 						onChange={this.createOnChange("bottomPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">flex</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>,
 						}}
 					/>
 					<TextField
@@ -112,7 +112,7 @@ export default class App extends Component {
 						value={this.state.leftPosition.toString(10)}
 						onChange={this.createOnChange("leftPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">flex</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>,
 						}}
 					/>
 					<br/>

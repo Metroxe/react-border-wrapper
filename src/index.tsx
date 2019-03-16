@@ -116,6 +116,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderTopColor: props.borderColour,
 						borderLeftColor: props.borderColour,
 						marginTop: props.topOffset,
+						marginLeft: props.leftOffset,
 						minHeight: props.topOffset,
 					}}
 				/>
@@ -151,6 +152,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderRightColor: props.borderColour,
 						marginTop: props.topOffset,
 						minHeight: props.borderRadius,
+						marginRight: props.rightOffset,
 					}}
 				/>
 			</div>
@@ -163,9 +165,10 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 							borderLeft: props.borderType,
 							borderLeftWidth: props.borderWidth,
 							height: leftPosition.primary,
+							marginLeft: props.leftOffset
 						}}
 					/>
-					<div>
+					<div style={{alignSelf: "flex-start"}}>
 						{props.leftElement}
 					</div>
 					<div
@@ -173,6 +176,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 							borderLeft: props.borderType,
 							borderLeftWidth: props.borderWidth,
 							height: leftPosition.secondary,
+							marginLeft: props.leftOffset
 						}}
 					/>
 				</div>
@@ -187,10 +191,10 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 							borderRight: props.borderType,
 							borderRightWidth: props.borderWidth,
 							height: rightPosition.primary,
-							marginLeft: props.leftOffset,
+							marginRight: props.rightOffset,
 						}}
 					/>
-					<div>
+					<div className={styles.ReactBorderWrapperBorderRightElement}>
 						{props.rightElement}
 					</div>
 					<div
@@ -198,7 +202,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 							borderRight: props.borderType,
 							borderRightWidth: props.borderWidth,
 							height: rightPosition.secondary,
-							marginLeft: props.rightOffset,
+							marginRight: props.rightOffset,
 						}}
 					/>
 				</div>
@@ -218,7 +222,8 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderBottomColor: props.borderColour,
 						borderLeftColor: props.borderColour,
 						minHeight: props.borderRadius,
-						marginBottom: props.bottomOffset
+						marginBottom: props.bottomOffset,
+						marginLeft: props.leftOffset,
 					}}
 				/>
 				<div
@@ -257,6 +262,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderRightColor: props.borderColour,
 						marginBottom: props.bottomOffset,
 						minHeight: props.borderRadius,
+						marginRight: props.rightOffset,
 					}}
 				/>
 			</div>
@@ -293,9 +299,9 @@ ReactBorderWrapper.defaultProps = {
 	borderColour: "#000000",
 	borderType: "solid",
 	topOffset: "0px",
-	rightOffset: "0px",
+	rightOffset: "3px",
 	bottomOffset: "0px",
-	leftOffset: "0px",
+	leftOffset: "3px",
 };
 
 export default ReactBorderWrapper
