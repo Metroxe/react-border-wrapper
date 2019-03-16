@@ -1,0 +1,26 @@
+.ReactBorderWrapperParent {
+    display: inline-block;
+}
+
+.ReactBorderWrapperBorderChildren {
+    display: flex;
+    flex-direction: row;
+}
+
+.ReactBorderWrapperBorderHorizontalParent {
+    display: flex;
+    flex-direction: row;
+}
+
+.ReactBorderWrapperBorderVerticalParent {
+    display: flex;
+    flex-direction: column;
+}
+
+.ReactBorderWrapperBorderBottomElement {
+    align-self: flex-end;
+}
+
+.ReactBorderWrapperCorner {
+    display: flex;
+}
