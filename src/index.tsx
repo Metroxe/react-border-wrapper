@@ -19,18 +19,22 @@ export type Props = {
 	topElement?: ReactNode;
 	topPosition?: string | number;
 	topOffset?: string | number;
+	topInvertSide? : boolean;
 
 	rightElement?: ReactNode;
 	rightPosition?: string | number;
 	rightOffset?: string | number;
+	rightInvertSide? : boolean;
 
 	bottomElement?: ReactNode;
 	bottomPosition?: string | number;
 	bottomOffset?: string | number;
+	bottomInvertSide? : boolean;
 
 	leftElement?: ReactNode;
 	leftPosition?: string | number;
 	leftOffset?: string | number;
+	leftInvertSide? : boolean;
 }
 
 type Positions = {
@@ -65,10 +69,10 @@ function determineChildStyle(props: Props, positions: Positions): CSSProperties 
 		borderLeftWidth: positions.left ? 0 : props.borderWidth,
 
 		// Padding
-		paddingTop: positions.top ? 0 : props.innerPadding,
-		paddingRight: positions.right ? 0 : props.innerPadding,
-		paddingBottom: positions.bottom ? 0 : props.innerPadding,
-		paddingLeft: positions.left ? 0 : props.innerPadding,
+		// paddingTop: positions.top ? 0 : props.innerPadding,
+		// paddingRight: positions.right ? 0 : props.innerPadding,
+		// paddingBottom: positions.bottom ? 0 : props.innerPadding,
+		// paddingLeft: positions.left ? 0 : props.innerPadding,
 	}
 }
 
@@ -94,14 +98,18 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 		</div>
 	);
 	const topBorder: ReactNode = positions.top && createBorder(props, "top");
-	// const rightBorder: ReactNode = positions.right && createBorder(props, props.rightElement, props.rightPosition as string | number);
+	const rightBorder: ReactNode = positions.right && createBorder(props, "right");
 	const bottomBorder: ReactNode = positions.bottom && createBorder(props, "bottom");
-	// const leftBorder: ReactNode = positions.left && createBorder(props, props.leftElement, props.leftPosition as string | number);
+	const leftBorder: ReactNode = positions.left && createBorder(props, "left");
 
 	return (
 		<div className={styles.ReactBorderWrapperParent} style={props.style}>
 			{topBorder}
-			{children}
+			<div className={styles.ReactBorderWrapperBorderChildren}>
+				{leftBorder}
+				{children}
+				{rightBorder}
+			</div>
 			{bottomBorder}
 		</div>
 	)
@@ -117,6 +125,11 @@ ReactBorderWrapper.defaultProps = {
 	rightOffset: "10px",
 	bottomOffset: "10px",
 	leftOffset: "10px",
+
+	topInvertSide: false,
+	leftInvertSide: false,
+	rightInvertSide: false,
+	bottomInvertSide: false,
 };
 
 export default ReactBorderWrapper

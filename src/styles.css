@@ -2,6 +2,10 @@
     display: inline-block;
 }
 
+.ReactBorderWrapperBorderChildren {
+    display: flex;
+}
+
 .ReactBorderWrapperBorderParent {
     display: flex;
 }

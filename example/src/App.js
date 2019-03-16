@@ -8,12 +8,20 @@ export default class App extends Component {
 			<div style={{margin: "50px"}}>
 				<BorderWrapper
 					topElement={
-						<h2 style={{margin: 0}}>Logo</h2>
+						<p style={{margin: 0}}>Logo</p>
 					}
+					leftElement={
+						<p style={{margin: 0}}>Logo</p>
+					}
+					leftInvertSide={true}
 					bottomElement={
-						<h2 style={{margin: 0}}>Logo</h2>
+						<p style={{margin: 0}}>Logo</p>
 					}
-					innerPadding="10px"
+					bottomInvertSide={true}
+					rightElement={
+						<p style={{margin: 0, padding: 0}}>Logo</p>
+					}
+					innerPadding="50px"
 				>
 					<h1 style={{margin: 0}}>Hey there</h1>
 					<h2 style={{margin: 0}}>I'm Rockin a Sitch</h2>
