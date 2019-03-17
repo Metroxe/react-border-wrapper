@@ -103,34 +103,7 @@ export default class App extends Component {
 				</Paper>
 
 				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
-					<TextField
-						className="TextField"
-						variant="outlined"
-						select={true}
-						label="Select"
-						value={"bud"}
-						margin="normal"
-						onChange={this.createOnChange("showTop")}
-					>
-						<MenuItem key={"True"} value={true}>
-							True
-						</MenuItem>
-						<MenuItem key={"False"} value={false}>
-							False
-						</MenuItem>
-					</TextField>
-					<TextField
-						className="TextField"
-						variant="outlined"
-						label="Colour"
-						type="text"
-						select
-						value={this.state.colour}
-						onChange={this.createOnChange("colour")}
-						InputProps={{
-							endAdornment: <InputAdornment position="end">#</InputAdornment>
-						}}
-					/>
+
 					<TextField
 						className="TextField"
 						variant="outlined"
@@ -164,6 +137,70 @@ export default class App extends Component {
 							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Show Top"
+						value={this.state.showTop ? "true" : "false"}
+						margin="normal"
+						onChange={this.createOnChange("showTop")}
+					>
+						<MenuItem key={"true"} value={true}>
+							True
+						</MenuItem>
+						<MenuItem key={"false"} value={false}>
+							False
+						</MenuItem>
+					</TextField>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Show Right"
+						value={this.state.showRight ? "true" : "false"}
+						margin="normal"
+						onChange={this.createOnChange("showRight")}
+					>
+						<MenuItem key={"true"} value={true}>
+							True
+						</MenuItem>
+						<MenuItem key={"false"} value={false}>
+							False
+						</MenuItem>
+					</TextField>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Show Bottom"
+						value={this.state.showBottom ? "true" : "false"}
+						margin="normal"
+						onChange={this.createOnChange("showBottom")}
+					>
+						<MenuItem key={"true"} value={true}>
+							True
+						</MenuItem>
+						<MenuItem key={"false"} value={false}>
+							False
+						</MenuItem>
+					</TextField>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Show Left"
+						value={this.state.showLeft ? "true" : "false"}
+						margin="normal"
+						onChange={this.createOnChange("showLeft")}
+					>
+						<MenuItem key={"true"} value={true}>
+							True
+						</MenuItem>
+						<MenuItem key={"false"} value={false}>
+							False
+						</MenuItem>
+					</TextField>
 					<TextField
 						className="TextField"
 						variant="outlined"
