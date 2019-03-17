@@ -17,10 +17,10 @@ export default class App extends Component {
 		rightPosition: 0.1,
 		bottomPosition: 0.9,
 		leftPosition: 0.9,
-		topOffset: 8,
-		rightOffset: 8,
-		bottomOffset: 8,
-		leftOffset: 8,
+		topOffset: 16,
+		rightOffset: 16,
+		bottomOffset: 16,
+		leftOffset: 16,
 		topGap: 4,
 		rightGap: 4,
 		bottomGap: 4,
@@ -38,9 +38,9 @@ export default class App extends Component {
 	};
 
 	horizontalImage = (
-		<div style={{width: "100px"}}>
+		<div style={{width: "200px"}}>
 			<img
-				style={{width: "100px"}}
+				style={{width: "200px"}}
 				src="https://via.placeholder.com/2000x400.png?text=Your+Logo"
 				alt="Placeholder"
 			/>
@@ -48,9 +48,9 @@ export default class App extends Component {
 	);
 
 	verticalImage = (
-		<div style={{height: "100px"}}>
+		<div style={{height: "200px"}}>
 			<img
-				style={{height: "100px"}}
+				style={{height: "200px"}}
 				src="https://via.placeholder.com/400x2000.png?text=Your+Logo"
 				alt="Placeholder"
 			/>
