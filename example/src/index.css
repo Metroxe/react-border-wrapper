@@ -6,4 +6,5 @@ body {
 
 .TextField {
   margin: 10px !important;
+  width: 200px
 }
