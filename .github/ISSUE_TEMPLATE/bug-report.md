@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-**Name of the style**
-A nice style name.
+**Describe the bug**
+Describe the problem here
 
 **Props to Reproduce**
 ```jsx
