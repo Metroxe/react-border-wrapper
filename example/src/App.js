@@ -9,6 +9,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import MenuItem from "@material-ui/core/MenuItem";
 import {LargeContent, MediumContent, SmallContent} from "./Content";
+import Button from "@material-ui/core/Button";
 
 export default class App extends Component {
 
@@ -70,9 +71,30 @@ export default class App extends Component {
 				<CssBaseline/>
 				<AppBar position="static" color="primary">
 					<Toolbar>
-						<Typography variant="h6" color="inherit">
+						<Typography variant="h6" color="inherit" style={{flex: 1}}>
 							React Border Wrapper
 						</Typography>
+						<Button
+							href="https://github.com/Metroxe/react-border-wrapper"
+							target="_blank"
+							color="inherit"
+						>
+							Github
+						</Button>
+						<Button
+							href="https://github.com/Metroxe/react-border-wrapper/issues/new?assignees=&labels=bug&template=bug-report.md&title="
+							target="_blank"
+							color="inherit"
+						>
+							Submit an Bug
+						</Button>
+						<Button
+							href="https://github.com/Metroxe/react-border-wrapper/issues/new?assignees=&labels=new+style&template=new-style.md&title="
+							target="_blank"
+							color="inherit"
+						>
+							Submit an Style
+						</Button>
 					</Toolbar>
 				</AppBar>
 
@@ -386,9 +408,55 @@ export default class App extends Component {
 					/>
 				</Paper>
 
-				{/*<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>*/}
-				{/**/}
-				{/*</Paper>*/}
+				<Paper style={{justifyContent: "center", padding: "50px", marginBottom: "10px", marginTop: "20px", display: "flex"}}>
+					<div>
+						<code>
+							{`<BorderWrapper`}<br/>
+							&nbsp;{`borderColour="${this.state.colour}"`}<br/>
+							&nbsp;{`borderWidth="${this.state.borderWidth}px"`}<br/>
+							&nbsp;{`borderRadius="${this.state.borderRadius}px"`}<br/>
+							&nbsp;{`borderType="${this.state.borderType}"`}<br/>
+							&nbsp;{`innerPadding="${this.state.innerPadding}px"`}<br/>
+
+							{this.state.showTop && (
+								<code>
+									&nbsp;{`topElement={topElement}`}<br/>
+									&nbsp;{`topPosition={${this.state.topPosition}}`}<br/>
+									&nbsp;{`topOffset="${this.state.topOffset}px"`}<br/>
+									&nbsp;{`topGap="${this.state.topGap}px"`}<br/>
+								</code>
+							)}
+
+							{this.state.showRight && (
+								<code>
+									&nbsp;{`rightElement={rightElement}`}<br/>
+									&nbsp;{`rightPosition={${this.state.rightPosition}}`}<br/>
+									&nbsp;{`rightOffset="${this.state.rightOffset}px"`}<br/>
+									&nbsp;{`rightGap="${this.state.rightGap}px"`}<br/>
+								</code>
+							)}
+
+							{this.state.showBottom && (
+								<code>
+									&nbsp;{`bottomElement={bottomElement}`}<br/>
+									&nbsp;{`bottomPosition={${this.state.bottomPosition}}`}<br/>
+									&nbsp;{`bottomOffset="${this.state.bottomOffset}px"`}<br/>
+									&nbsp;{`bottomGap="${this.state.bottomGap}px"`}<br/>
+								</code>
+							)}
+
+							{this.state.showLeft && (
+								<code>
+									&nbsp;{`leftElement={leftElement}`}<br/>
+									&nbsp;{`leftPosition={${this.state.leftPosition}}`}<br/>
+									&nbsp;{`leftOffset="${this.state.leftOffset}px"`}<br/>
+									&nbsp;{`leftGap="${this.state.leftGap}px"`}<br/>
+								</code>
+							)}
+							{`</BorderWrapper>`}<br/>
+						</code>
+					</div>
+				</Paper>
 			</Paper>
 		);
 	}
