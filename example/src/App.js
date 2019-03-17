@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import MenuItem from "@material-ui/core/MenuItem";
+import {LargeContent, MediumContent, SmallContent} from "./Content";
 
 export default class App extends Component {
 
@@ -30,8 +31,10 @@ export default class App extends Component {
 		showBottom: false,
 		colour: "#000000",
 		borderWidth: 5,
-		innerPadding: 50,
+		innerPadding: 30,
 		borderRadius: 15,
+		borderType: "solid",
+		content: "medium"
 	};
 
 	horizontalImage = (
@@ -61,6 +64,7 @@ export default class App extends Component {
 	};
 
 	render() {
+
 		return (
 			<Paper>
 				<CssBaseline/>
@@ -78,6 +82,7 @@ export default class App extends Component {
 						borderWidth={this.state.borderWidth + "px"}
 						borderRadius={this.state.borderRadius + "px"}
 						innerPadding={this.state.innerPadding + "px"}
+						borderType={this.state.borderType}
 
 						topElement={this.state.showTop ? this.horizontalImage : undefined}
 						topPosition={this.state.topPosition}
@@ -99,13 +104,26 @@ export default class App extends Component {
 						leftOffset={this.state.leftOffset + "px"}
 						leftGap={this.state.leftGap + "px"}
 					>
-						<h1 style={{margin: 0}}>Hey there</h1>
-						<h2 style={{margin: 0}}>I'm Rockin a Sitch</h2>
+						{this.state.content === "large" ? <LargeContent/> : this.state.content === "medium" ?
+							<MediumContent/> : <SmallContent/>}
 					</BorderWrapper>
 				</Paper>
 
 				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
 
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Content Size"
+						value={this.state.content}
+						margin="normal"
+						onChange={this.createOnChange("content")}
+					>
+						<MenuItem key={"small"} value={"small"}>Small</MenuItem>
+						<MenuItem key={"medium"} value={"medium"}>Medium</MenuItem>
+						<MenuItem key={"large"} value={"large"}>Large</MenuItem>
+					</TextField>
 					<TextField
 						className="TextField"
 						variant="outlined"
@@ -150,6 +168,26 @@ export default class App extends Component {
 							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Border Type"
+						value={this.state.borderType}
+						margin="normal"
+						onChange={this.createOnChange("borderType")}
+					>
+						<MenuItem key={"dashed"} value={"dashed"}>Dashed</MenuItem>
+						<MenuItem key={"dotted"} value={"dotted"}>Dotted</MenuItem>
+						<MenuItem key={"double"} value={"double"}>Double</MenuItem>
+						<MenuItem key={"groove"} value={"groove"}>Groove</MenuItem>
+						<MenuItem key={"hidden"} value={"hidden"}>Hidden</MenuItem>
+						<MenuItem key={"inset"} value={"inset"}>Inset</MenuItem>
+						<MenuItem key={"none"} value={"none"}>None</MenuItem>
+						<MenuItem key={"outset"} value={"outset"}>Outset</MenuItem>
+						<MenuItem key={"ridge"} value={"ridge"}>Ridge</MenuItem>
+						<MenuItem key={"solid"} value={"solid"}>Solid</MenuItem>
+					</TextField>
 					<TextField
 						className="TextField"
 						variant="outlined"
@@ -349,7 +387,7 @@ export default class App extends Component {
 				</Paper>
 
 				{/*<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>*/}
-					{/**/}
+				{/**/}
 				{/*</Paper>*/}
 			</Paper>
 		);
