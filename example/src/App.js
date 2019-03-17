@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import BorderWrapper from "react-border-wrapper";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -14,23 +13,23 @@ import Button from "@material-ui/core/Button";
 export default class App extends Component {
 
 	state = {
-		topPosition: 0.1,
+		topPosition: 0.05,
 		rightPosition: 0.1,
 		bottomPosition: 0.9,
 		leftPosition: 0.9,
-		topOffset: 16,
-		rightOffset: 16,
-		bottomOffset: 16,
-		leftOffset: 16,
+		topOffset: 22,
+		rightOffset: 22,
+		bottomOffset: 22,
+		leftOffset: 22,
 		topGap: 4,
 		rightGap: 4,
 		bottomGap: 4,
 		leftGap: 4,
 		showTop: true,
 		showLeft: false,
-		showRight: false,
+		showRight: true,
 		showBottom: false,
-		colour: "#000000",
+		colour: "#00bcf1",
 		borderWidth: 5,
 		innerPadding: 30,
 		borderRadius: 15,
@@ -42,18 +41,18 @@ export default class App extends Component {
 		<div style={{width: "200px"}}>
 			<img
 				style={{width: "200px"}}
-				src="https://via.placeholder.com/2000x400.png?text=Your+Logo"
-				alt="Placeholder"
+				src={process.env.PUBLIC_URL + "/react_border_wrapper_logo.png"}
+				alt="react border wrapper logo"
 			/>
 		</div>
 	);
 
 	verticalImage = (
-		<div style={{height: "200px"}}>
+		<div style={{height: "50px"}}>
 			<img
-				style={{height: "200px"}}
-				src="https://via.placeholder.com/400x2000.png?text=Your+Logo"
-				alt="Placeholder"
+				style={{height: "50px"}}
+				src={process.env.PUBLIC_URL + "/react_border_wrapper_icon.png"}
+				alt="react border wrapper icon"
 			/>
 		</div>
 	);
@@ -69,11 +68,14 @@ export default class App extends Component {
 		return (
 			<Paper>
 				<CssBaseline/>
-				<AppBar position="static" color="primary">
+				<AppBar position="static" style={{backgroundColor: "#000000"}}>
 					<Toolbar>
-						<Typography variant="h6" color="inherit" style={{flex: 1}}>
-							React Border Wrapper
-						</Typography>
+						<img
+							style={{height: "50px"}}
+							alt="react border wrapper"
+							src={process.env.PUBLIC_URL + "/react_border_wrapper_logo_white.png"}
+						/>
+						<div style={{flex: 1}}/>
 						<Button
 							href="https://github.com/Metroxe/react-border-wrapper"
 							target="_blank"
@@ -93,12 +95,12 @@ export default class App extends Component {
 							target="_blank"
 							color="inherit"
 						>
-							Submit an Style
+							Submit a Style
 						</Button>
 					</Toolbar>
 				</AppBar>
 
-				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
+				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px", marginLeft: "20px", marginRight: "20px"}}>
 					<BorderWrapper
 						borderColour={this.state.colour}
 						borderWidth={this.state.borderWidth + "px"}
@@ -131,7 +133,7 @@ export default class App extends Component {
 					</BorderWrapper>
 				</Paper>
 
-				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
+				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px", marginLeft: "20px", marginRight: "20px"}}>
 
 					<TextField
 						className="TextField"
@@ -408,7 +410,7 @@ export default class App extends Component {
 					/>
 				</Paper>
 
-				<Paper style={{justifyContent: "center", padding: "50px", marginBottom: "10px", marginTop: "20px", display: "flex"}}>
+				<Paper style={{justifyContent: "center", padding: "50px", marginBottom: "10px", marginTop: "20px", marginLeft: "20px", marginRight: "20px", display: "flex"}}>
 					<div>
 						<code>
 							{`<BorderWrapper`}<br/>
