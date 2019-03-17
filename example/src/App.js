@@ -30,7 +30,8 @@ export default class App extends Component {
 		showBottom: false,
 		colour: "#000000",
 		borderWidth: 5,
-		innerPadding: 50
+		innerPadding: 50,
+		borderRadius: 15,
 	};
 
 	horizontalImage = (
@@ -75,6 +76,7 @@ export default class App extends Component {
 					<BorderWrapper
 						borderColour={this.state.colour}
 						borderWidth={this.state.borderWidth + "px"}
+						borderRadius={this.state.borderRadius + "px"}
 						innerPadding={this.state.innerPadding + "px"}
 
 						topElement={this.state.showTop ? this.horizontalImage : undefined}
@@ -133,6 +135,17 @@ export default class App extends Component {
 						type="number"
 						value={this.state.innerPadding.toString(10)}
 						onChange={this.createOnChange("innerPadding")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Border Radius"
+						type="number"
+						value={this.state.borderRadius.toString(10)}
+						onChange={this.createOnChange("borderRadius")}
 						InputProps={{
 							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
