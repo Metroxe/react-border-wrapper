@@ -88,7 +88,7 @@ export default class App extends Component {
 							target="_blank"
 							color="inherit"
 						>
-							Submit an Bug
+							Submit a Bug
 						</Button>
 						<Button
 							href="https://github.com/Metroxe/react-border-wrapper/issues/new?assignees=&labels=new+style&template=new-style.md&title="
