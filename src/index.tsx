@@ -101,7 +101,6 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					className={styles.ReactBorderWrapperCorner}
 					style={{
 						borderTopLeftRadius: props.borderRadius,
-						width: props.borderRadius,
 						borderTop: props.borderType,
 						borderLeft: props.borderType,
 						borderTopWidth: props.borderWidth,
@@ -111,6 +110,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						marginTop: topOffset,
 						marginLeft: leftOffset,
 						minHeight: props.borderRadius,
+						minWidth: props.borderRadius,
 					}}
 				/>
 				<div
@@ -143,7 +143,6 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					className={styles.ReactBorderWrapperCorner}
 					style={{
 						borderTopRightRadius: props.borderRadius,
-						width: props.borderRadius,
 						borderTop: props.borderType,
 						borderRight: props.borderType,
 						borderTopWidth: props.borderWidth,
@@ -152,6 +151,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderRightColor: props.borderColour,
 						marginTop: topOffset,
 						minHeight: props.borderRadius,
+						minWidth: props.borderRadius,
 						marginRight: rightOffset,
 					}}
 				/>
@@ -231,8 +231,6 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 				<div
 					style={{
 						borderBottomLeftRadius: props.borderRadius,
-						width: props.borderRadius,
-						height: props.borderRadius,
 						borderBottom: props.borderType,
 						borderLeft: props.borderType,
 						borderBottomWidth: props.borderWidth,
@@ -240,6 +238,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderBottomColor: props.borderColour,
 						borderLeftColor: props.borderColour,
 						minHeight: props.borderRadius,
+						minWidth: props.borderRadius,
 						marginBottom: bottomOffset,
 						marginLeft: leftOffset,
 					}}
@@ -274,8 +273,6 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 				<div
 					style={{
 						borderBottomRightRadius: props.borderRadius,
-						width: props.borderRadius,
-						height: props.borderRadius,
 						borderBottom: props.borderType,
 						borderRight: props.borderType,
 						borderBottomWidth: props.borderWidth,
@@ -284,6 +281,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderRightColor: props.borderColour,
 						marginBottom: bottomOffset,
 						minHeight: props.borderRadius,
+						minWidth: props.borderRadius,
 						marginRight: rightOffset,
 					}}
 				/>

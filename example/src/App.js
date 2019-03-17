@@ -25,9 +25,9 @@ export default class App extends Component {
 		bottomGap: 4,
 		leftGap: 4,
 		showTop: true,
-		showLeft: true,
-		showRight: true,
-		showBottom: true,
+		showLeft: false,
+		showRight: false,
+		showBottom: false,
 		colour: "#000000",
 		borderWidth: 5,
 		innerPadding: 50
