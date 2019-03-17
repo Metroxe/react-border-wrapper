@@ -1,6 +1,6 @@
 ---
-name: New Style
-about: Add a New Style
+name: Bug Report
+about: Add a new Bug
 title: ''
 labels: bug
 assignees: ''

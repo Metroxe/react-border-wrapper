@@ -1,8 +1,8 @@
 ---
-name: New Style
-about: Add a New Style
+name: New style
+about: Add a new style
 title: ''
-labels: bug
+labels: new style
 assignees: ''
 
 ---
@@ -10,7 +10,8 @@ assignees: ''
 **Name of the style**
 A nice style name.
 
-**Props to Reproduce**
+**Props to reproduce**
+
 ```jsx
 <BorderWrapper
 	// Props
@@ -23,4 +24,4 @@ A nice style name.
 Take a screenshot of the style in the playground
 
 **Additional context (Optional)**
-Add any other context about the problem here.
+Add any other context here.
