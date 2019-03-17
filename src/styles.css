@@ -1,3 +1,17 @@
+h1 {
+    font-size: 42pt;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 24pt;
+}
+
+h3 {
+    font-size: 12pt;
+}
+
 .ReactBorderWrapperParent {
     display: inline-block;
 }
