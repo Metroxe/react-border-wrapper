@@ -1,6 +1,6 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Bug Report
+about: Add a new Bug
 title: ''
 labels: bug
 assignees: ''
@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+Describe the problem here
 
 **Props to Reproduce**
 ```jsx
@@ -20,7 +20,7 @@ A clear and concise description of what the bug is.
 ```
 
 **Screenshots**
-If applicable, add screenshots to help explain your problem.
+Take a screenshot of the style in the playground
 
 **Additional context (Optional)**
 Add any other context about the problem here.
