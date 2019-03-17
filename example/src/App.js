@@ -6,6 +6,9 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import MenuItem from "@material-ui/core/MenuItem";
+import {LargeContent, MediumContent, SmallContent} from "./Content";
 
 export default class App extends Component {
 
@@ -22,6 +25,16 @@ export default class App extends Component {
 		rightGap: 4,
 		bottomGap: 4,
 		leftGap: 4,
+		showTop: true,
+		showLeft: false,
+		showRight: false,
+		showBottom: false,
+		colour: "#000000",
+		borderWidth: 5,
+		innerPadding: 30,
+		borderRadius: 15,
+		borderType: "solid",
+		content: "medium"
 	};
 
 	horizontalImage = (
@@ -46,14 +59,16 @@ export default class App extends Component {
 
 	createOnChange = (key) => {
 		return (event) => {
-			this.setState({[key]: event.target.value})
+			this.setState({[key]: event.target.value});
 		};
 	};
 
 	render() {
+
 		return (
-			<div>
-				<AppBar position="static" color="default">
+			<Paper>
+				<CssBaseline/>
+				<AppBar position="static" color="primary">
 					<Toolbar>
 						<Typography variant="h6" color="inherit">
 							React Border Wrapper
@@ -63,34 +78,180 @@ export default class App extends Component {
 
 				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
 					<BorderWrapper
-						topElement={this.horizontalImage}
+						borderColour={this.state.colour}
+						borderWidth={this.state.borderWidth + "px"}
+						borderRadius={this.state.borderRadius + "px"}
+						innerPadding={this.state.innerPadding + "px"}
+						borderType={this.state.borderType}
+
+						topElement={this.state.showTop ? this.horizontalImage : undefined}
 						topPosition={this.state.topPosition}
 						topOffset={this.state.topOffset + "px"}
 						topGap={this.state.topGap + "px"}
 
-						rightElement={this.verticalImage}
+						rightElement={this.state.showRight ? this.verticalImage : undefined}
 						rightPosition={this.state.rightPosition}
 						rightOffset={this.state.rightOffset + "px"}
 						rightGap={this.state.rightGap + "px"}
 
-						bottomElement={this.horizontalImage}
+						bottomElement={this.state.showBottom ? this.horizontalImage : undefined}
 						bottomPosition={this.state.bottomPosition}
 						bottomOffset={this.state.bottomOffset + "px"}
 						bottomGap={this.state.bottomGap + "px"}
 
-						leftElement={this.verticalImage}
+						leftElement={this.state.showLeft ? this.verticalImage : undefined}
 						leftPosition={this.state.leftPosition}
 						leftOffset={this.state.leftOffset + "px"}
 						leftGap={this.state.leftGap + "px"}
-
-						innerPadding="50px"
 					>
-						<h1 style={{margin: 0}}>Hey there</h1>
-						<h2 style={{margin: 0}}>I'm Rockin a Sitch</h2>
+						{this.state.content === "large" ? <LargeContent/> : this.state.content === "medium" ?
+							<MediumContent/> : <SmallContent/>}
 					</BorderWrapper>
 				</Paper>
 
 				<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>
+
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Content Size"
+						value={this.state.content}
+						margin="normal"
+						onChange={this.createOnChange("content")}
+					>
+						<MenuItem key={"small"} value={"small"}>Small</MenuItem>
+						<MenuItem key={"medium"} value={"medium"}>Medium</MenuItem>
+						<MenuItem key={"large"} value={"large"}>Large</MenuItem>
+					</TextField>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Colour"
+						type="text"
+						value={this.state.colour}
+						onChange={this.createOnChange("colour")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">#</InputAdornment>
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Border Width"
+						type="number"
+						value={this.state.borderWidth.toString(10)}
+						onChange={this.createOnChange("borderWidth")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Inner Padding"
+						type="number"
+						value={this.state.innerPadding.toString(10)}
+						onChange={this.createOnChange("innerPadding")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						label="Border Radius"
+						type="number"
+						value={this.state.borderRadius.toString(10)}
+						onChange={this.createOnChange("borderRadius")}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
+						}}
+					/>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Border Type"
+						value={this.state.borderType}
+						margin="normal"
+						onChange={this.createOnChange("borderType")}
+					>
+						<MenuItem key={"dashed"} value={"dashed"}>Dashed</MenuItem>
+						<MenuItem key={"dotted"} value={"dotted"}>Dotted</MenuItem>
+						<MenuItem key={"double"} value={"double"}>Double</MenuItem>
+						<MenuItem key={"groove"} value={"groove"}>Groove</MenuItem>
+						<MenuItem key={"hidden"} value={"hidden"}>Hidden</MenuItem>
+						<MenuItem key={"inset"} value={"inset"}>Inset</MenuItem>
+						<MenuItem key={"none"} value={"none"}>None</MenuItem>
+						<MenuItem key={"outset"} value={"outset"}>Outset</MenuItem>
+						<MenuItem key={"ridge"} value={"ridge"}>Ridge</MenuItem>
+						<MenuItem key={"solid"} value={"solid"}>Solid</MenuItem>
+					</TextField>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Show Top"
+						value={this.state.showTop ? "true" : "false"}
+						margin="normal"
+						onChange={this.createOnChange("showTop")}
+					>
+						<MenuItem key={"true"} value={true}>
+							True
+						</MenuItem>
+						<MenuItem key={"false"} value={false}>
+							False
+						</MenuItem>
+					</TextField>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Show Right"
+						value={this.state.showRight ? "true" : "false"}
+						margin="normal"
+						onChange={this.createOnChange("showRight")}
+					>
+						<MenuItem key={"true"} value={true}>
+							True
+						</MenuItem>
+						<MenuItem key={"false"} value={false}>
+							False
+						</MenuItem>
+					</TextField>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Show Bottom"
+						value={this.state.showBottom ? "true" : "false"}
+						margin="normal"
+						onChange={this.createOnChange("showBottom")}
+					>
+						<MenuItem key={"true"} value={true}>
+							True
+						</MenuItem>
+						<MenuItem key={"false"} value={false}>
+							False
+						</MenuItem>
+					</TextField>
+					<TextField
+						className="TextField"
+						variant="outlined"
+						select={true}
+						label="Show Left"
+						value={this.state.showLeft ? "true" : "false"}
+						margin="normal"
+						onChange={this.createOnChange("showLeft")}
+					>
+						<MenuItem key={"true"} value={true}>
+							True
+						</MenuItem>
+						<MenuItem key={"false"} value={false}>
+							False
+						</MenuItem>
+					</TextField>
 					<TextField
 						className="TextField"
 						variant="outlined"
@@ -99,7 +260,7 @@ export default class App extends Component {
 						value={this.state.topPosition.toString(10)}
 						onChange={this.createOnChange("topPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">%</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -110,7 +271,7 @@ export default class App extends Component {
 						value={this.state.rightPosition.toString(10)}
 						onChange={this.createOnChange("rightPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">%</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -121,7 +282,7 @@ export default class App extends Component {
 						value={this.state.bottomPosition.toString(10)}
 						onChange={this.createOnChange("bottomPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">%</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -132,10 +293,9 @@ export default class App extends Component {
 						value={this.state.leftPosition.toString(10)}
 						onChange={this.createOnChange("leftPosition")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">%</InputAdornment>,
+							endAdornment: <InputAdornment position="end">%</InputAdornment>
 						}}
 					/>
-					<br/>
 					<TextField
 						className="TextField"
 						variant="outlined"
@@ -144,7 +304,7 @@ export default class App extends Component {
 						value={this.state.topOffset.toString(10)}
 						onChange={this.createOnChange("topOffset")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -155,7 +315,7 @@ export default class App extends Component {
 						value={this.state.rightOffset.toString(10)}
 						onChange={this.createOnChange("rightOffset")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -166,7 +326,7 @@ export default class App extends Component {
 						value={this.state.bottomOffset.toString(10)}
 						onChange={this.createOnChange("bottomOffset")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -177,10 +337,9 @@ export default class App extends Component {
 						value={this.state.leftOffset.toString(10)}
 						onChange={this.createOnChange("leftOffset")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
-					<br/>
 					<TextField
 						className="TextField"
 						variant="outlined"
@@ -189,7 +348,7 @@ export default class App extends Component {
 						value={this.state.topGap.toString(10)}
 						onChange={this.createOnChange("topGap")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -200,7 +359,7 @@ export default class App extends Component {
 						value={this.state.rightGap.toString(10)}
 						onChange={this.createOnChange("rightGap")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -211,7 +370,7 @@ export default class App extends Component {
 						value={this.state.bottomGap.toString(10)}
 						onChange={this.createOnChange("bottomGap")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
 					<TextField
@@ -222,12 +381,15 @@ export default class App extends Component {
 						value={this.state.leftGap.toString(10)}
 						onChange={this.createOnChange("leftGap")}
 						InputProps={{
-							endAdornment: <InputAdornment position="end">px</InputAdornment>,
+							endAdornment: <InputAdornment position="end">px</InputAdornment>
 						}}
 					/>
-					<br/>
 				</Paper>
-			</div>
+
+				{/*<Paper style={{textAlign: "center", padding: "50px", marginBottom: "10px", marginTop: "20px"}}>*/}
+				{/**/}
+				{/*</Paper>*/}
+			</Paper>
 		);
 	}
 }

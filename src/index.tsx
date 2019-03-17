@@ -48,30 +48,8 @@ type Positions = {
 }
 
 type PositionPercent = {
-	primary: string;
-	secondary: string;
-}
-
-function determineChildStyle(props: Props, positions: Positions): CSSProperties {
-
-	return {
-		padding: props.innerPadding,
-		borderRadius: props.innerPadding,
-		borderColor: props.borderColour,
-		border: props.borderType,
-
-		// Radius
-		borderTopRightRadius: positions.topRight ? 0 : props.borderRadius,
-		borderBottomRightRadius: positions.bottomRight ? 0 : props.borderRadius,
-		borderBottomLeftRadius: positions.bottomLeft ? 0 : props.borderRadius,
-		borderTopLeftRadius: positions.topLeft ? 0 : props.borderRadius,
-
-		// Width
-		borderTopWidth: positions.top ? 0 : props.borderWidth,
-		borderRightWidth: positions.right ? 0 : props.borderWidth,
-		borderBottomWidth: positions.bottom ? 0 : props.borderWidth,
-		borderLeftWidth: positions.left ? 0 : props.borderWidth,
-	}
+	primary?: string;
+	secondary?: string;
 }
 
 function determineLocations(props: Props): Positions {
@@ -92,18 +70,28 @@ function parsePercentage(float: number = 0.5): PositionPercent {
 	} else if (float < 0) {
 		float = 0;
 	}
-	console.log({primary: Math.round(float * 100) + "%", secondary: Math.round((1 - float) * 100) + "%"});
 	return {primary: Math.round(float * 100) + "%", secondary: Math.round((1 - float) * 100) + "%"}
 }
 
 const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.Element => {
 
 	const positions: Positions = determineLocations(props);
-	const childrenStyle: CSSProperties = determineChildStyle(props, positions);
-	const topPosition: PositionPercent = parsePercentage(props.topPosition);
-	const rightPosition: PositionPercent = parsePercentage(props.rightPosition);
-	const bottomPosition: PositionPercent = parsePercentage(props.bottomPosition);
-	const leftPosition: PositionPercent = parsePercentage(props.leftPosition);
+
+	const undefinedPosition: PositionPercent = {primary: "50%", secondary: "50%"};
+	const topPosition: PositionPercent = positions.top ? parsePercentage(props.topPosition) : undefinedPosition;
+	const rightPosition: PositionPercent = positions.right ? parsePercentage(props.rightPosition) : undefinedPosition;
+	const bottomPosition: PositionPercent = positions.bottom ? parsePercentage(props.bottomPosition) : undefinedPosition;
+	const leftPosition: PositionPercent = positions.left ? parsePercentage(props.leftPosition) : undefinedPosition;
+
+	const topOffset: number | string | undefined = positions.top ? props.topOffset : undefined;
+	const rightOffset: number | string | undefined = positions.right ? props.rightOffset : undefined;
+	const bottomOffset: number | string | undefined = positions.bottom ? props.bottomOffset : undefined;
+	const leftOffset: number | string | undefined = positions.left ? props.leftOffset : undefined;
+
+	const topGap: number | string | undefined = positions.top ? props.topGap : undefined;
+	const rightGap: number | string | undefined = positions.right ? props.rightGap : undefined;
+	const bottomGap: number | string | undefined = positions.bottom ? props.bottomGap : undefined;
+	const leftGap: number | string | undefined = positions.left ? props.leftGap : undefined;
 
 	return (
 		<div className={styles.ReactBorderWrapperParent} style={props.style}>
@@ -113,30 +101,31 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					className={styles.ReactBorderWrapperCorner}
 					style={{
 						borderTopLeftRadius: props.borderRadius,
-						width: props.borderRadius,
 						borderTop: props.borderType,
 						borderLeft: props.borderType,
 						borderTopWidth: props.borderWidth,
 						borderLeftWidth: props.borderWidth,
 						borderTopColor: props.borderColour,
 						borderLeftColor: props.borderColour,
-						marginTop: props.topOffset,
-						marginLeft: props.leftOffset,
-						minHeight: props.topOffset,
+						marginTop: topOffset,
+						marginLeft: leftOffset,
+						minHeight: props.borderRadius,
+						minWidth: props.borderRadius,
 					}}
 				/>
 				<div
 					style={{
 						borderTop: props.borderType,
 						borderTopWidth: props.borderWidth,
+						borderTopColor: props.borderColour,
 						width: topPosition.primary,
-						marginTop: props.topOffset
+						marginTop: topOffset
 					}}
 				/>
 				<div
 					style={{
-						paddingLeft: props.topGap,
-						paddingRight: props.topGap,
+						paddingLeft: topGap,
+						paddingRight: topGap,
 					}}
 				>
 					{props.topElement}
@@ -145,24 +134,25 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					style={{
 						borderTop: props.borderType,
 						borderTopWidth: props.borderWidth,
+						borderTopColor: props.borderColour,
 						width: topPosition.secondary,
-						marginTop: props.topOffset
+						marginTop: topOffset
 					}}
 				/>
 				<div
 					className={styles.ReactBorderWrapperCorner}
 					style={{
 						borderTopRightRadius: props.borderRadius,
-						width: props.borderRadius,
 						borderTop: props.borderType,
 						borderRight: props.borderType,
 						borderTopWidth: props.borderWidth,
 						borderRightWidth: props.borderWidth,
 						borderTopColor: props.borderColour,
 						borderRightColor: props.borderColour,
-						marginTop: props.topOffset,
+						marginTop: topOffset,
 						minHeight: props.borderRadius,
-						marginRight: props.rightOffset,
+						minWidth: props.borderRadius,
+						marginRight: rightOffset,
 					}}
 				/>
 			</div>
@@ -174,15 +164,16 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						style={{
 							borderLeft: props.borderType,
 							borderLeftWidth: props.borderWidth,
+							borderLeftColor: props.borderColour,
 							height: leftPosition.primary,
-							marginLeft: props.leftOffset
+							marginLeft: leftOffset
 						}}
 					/>
 					<div
 						style={{
 							alignSelf: "flex-start",
-							paddingTop: props.leftGap,
-							paddingBottom: props.leftGap,
+							paddingTop: leftGap,
+							paddingBottom: leftGap,
 						}}
 					>
 						{props.leftElement}
@@ -191,13 +182,16 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						style={{
 							borderLeft: props.borderType,
 							borderLeftWidth: props.borderWidth,
+							borderLeftColor: props.borderColour,
 							height: leftPosition.secondary,
-							marginLeft: props.leftOffset
+							marginLeft: leftOffset
 						}}
 					/>
 				</div>
 
-				<div style={childrenStyle}>
+				<div style={{
+					padding: props.innerPadding
+				}}>
 					{props.children}
 				</div>
 
@@ -205,16 +199,17 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					<div
 						style={{
 							borderRight: props.borderType,
+							borderRightColor: props.borderColour,
 							borderRightWidth: props.borderWidth,
 							height: rightPosition.primary,
-							marginRight: props.rightOffset,
+							marginRight: rightOffset,
 						}}
 					/>
 					<div
 						className={styles.ReactBorderWrapperBorderRightElement}
 						style={{
-							paddingTop: props.rightGap,
-							paddingBottom: props.rightGap,
+							paddingTop: rightGap,
+							paddingBottom: rightGap,
 						}}
 					>
 						{props.rightElement}
@@ -222,9 +217,10 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					<div
 						style={{
 							borderRight: props.borderType,
+							borderRightColor: props.borderColour,
 							borderRightWidth: props.borderWidth,
 							height: rightPosition.secondary,
-							marginRight: props.rightOffset,
+							marginRight: rightOffset,
 						}}
 					/>
 				</div>
@@ -235,8 +231,6 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 				<div
 					style={{
 						borderBottomLeftRadius: props.borderRadius,
-						width: props.borderRadius,
-						height: props.borderRadius,
 						borderBottom: props.borderType,
 						borderLeft: props.borderType,
 						borderBottomWidth: props.borderWidth,
@@ -244,23 +238,25 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						borderBottomColor: props.borderColour,
 						borderLeftColor: props.borderColour,
 						minHeight: props.borderRadius,
-						marginBottom: props.bottomOffset,
-						marginLeft: props.leftOffset,
+						minWidth: props.borderRadius,
+						marginBottom: bottomOffset,
+						marginLeft: leftOffset,
 					}}
 				/>
 				<div
 					style={{
 						borderBottom: props.borderType,
 						borderBottomWidth: props.borderWidth,
+						borderBottomColor: props.borderColour,
 						width: bottomPosition.primary,
-						marginBottom: props.bottomOffset
+						marginBottom: bottomOffset
 					}}
 				/>
 				<div
 					style={{
 						alignSelf: "flex-end",
-						paddingLeft: props.bottomGap,
-						paddingRight: props.bottomGap,
+						paddingLeft: bottomGap,
+						paddingRight: bottomGap,
 					}}
 				>
 					{props.bottomElement}
@@ -269,24 +265,24 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					style={{
 						borderBottom: props.borderType,
 						borderBottomWidth: props.borderWidth,
+						borderBottomColor: props.borderColour,
 						width: bottomPosition.secondary,
-						marginBottom: props.bottomOffset
+						marginBottom: bottomOffset
 					}}
 				/>
 				<div
 					style={{
 						borderBottomRightRadius: props.borderRadius,
-						width: props.borderRadius,
-						height: props.borderRadius,
 						borderBottom: props.borderType,
 						borderRight: props.borderType,
 						borderBottomWidth: props.borderWidth,
 						borderRightWidth: props.borderWidth,
 						borderBottomColor: props.borderColour,
 						borderRightColor: props.borderColour,
-						marginBottom: props.bottomOffset,
+						marginBottom: bottomOffset,
 						minHeight: props.borderRadius,
-						marginRight: props.rightOffset,
+						minWidth: props.borderRadius,
+						marginRight: rightOffset,
 					}}
 				/>
 			</div>
