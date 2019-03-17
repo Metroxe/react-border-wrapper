@@ -16,6 +16,8 @@ yarn add react-border-wrapper
 
 ## Usage
 
+Use the border wrapper in the same way you would use a `<div>`.
+
 ```tsx
 import * as React from 'react'
 import BorderWrapper from 'react-border-wrapper'
@@ -27,12 +29,12 @@ class Example extends React.Component {
       	// Content
       </BorderWrapper>
     )
-  }å
+  }
 }
 ```
 
 ## Playground
-Use the following link to play around with the props and find a proper style. It is highly encouraged to export the props and either report an issue with them or submit them as a style to be used by other users.
+Use the following link to play around with the props and find a proper style. It is highly encouraged to export the props and either [report an issue](https://github.com/Metroxe/react-border-wrapper/issues/new?assignees=&labels=bug&template=bug_report.md&title=) with them or submit them as a style to be used by other users.
 
 [https://metroxe.github.io/react-border-wrapper/](https://metroxe.github.io/react-border-wrapper/)
 
