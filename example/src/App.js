@@ -41,7 +41,7 @@ export default class App extends Component {
 		<div style={{width: "200px"}}>
 			<img
 				style={{width: "200px"}}
-				src="/react_border_wrapper_logo.png"
+				src={process.env.PUBLIC_URL + "/react_border_wrapper_logo.png"}
 				alt="react border wrapper logo"
 			/>
 		</div>
@@ -51,7 +51,7 @@ export default class App extends Component {
 		<div style={{height: "50px"}}>
 			<img
 				style={{height: "50px"}}
-				src="/react_border_wrapper_icon.png"
+				src={process.env.PUBLIC_URL + "/react_border_wrapper_icon.png"}
 				alt="react border wrapper icon"
 			/>
 		</div>
@@ -73,7 +73,7 @@ export default class App extends Component {
 						<img
 							style={{height: "50px"}}
 							alt="react border wrapper"
-							src="/react_border_wrapper_logo_white.png"
+							src={process.env.PUBLIC_URL + "/react_border_wrapper_logo_white.png"}
 						/>
 						<div style={{flex: 1}}/>
 						<Button
