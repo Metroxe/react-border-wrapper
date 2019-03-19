@@ -1,6 +1,6 @@
 {
   "name": "react-border-wrapper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A wrapper for placing elements along div borders in React.",
   "author": "Metroxe",
   "license": "MIT",
