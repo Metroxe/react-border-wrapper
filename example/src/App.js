@@ -455,6 +455,7 @@ export default class App extends Component {
 									&nbsp;{`leftGap="${this.state.leftGap}px"`}<br/>
 								</code>
 							)}
+							><br/>
 							{`</BorderWrapper>`}<br/>
 						</code>
 					</div>
