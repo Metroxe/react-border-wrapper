@@ -1,7 +1,6 @@
 import * as React from 'react'
+import {CSSProperties, ReactNode} from 'react'
 import styles from './styles.css'
-import {ReactNode} from "react";
-import {CSSProperties} from "react";
 import {LineStyle} from "csstype";
 import * as PropTypes from "prop-types";
 
@@ -52,11 +51,11 @@ type PositionPercent = {
 	secondary?: string;
 }
 
-function determineLocations(props: Props): Positions {
-	const top: boolean = props.topElement !== undefined;
-	const right: boolean = props.rightElement !== undefined;
-	const bottom: boolean = props.bottomElement !== undefined;
-	const left: boolean = props.leftElement !== undefined;
+function determineLocations({bottomElement, leftElement, topElement, rightElement}: Props): Positions {
+	const top: boolean = topElement !== undefined;
+	const right: boolean = rightElement !== undefined;
+	const bottom: boolean = bottomElement !== undefined;
+	const left: boolean = leftElement !== undefined;
 	const topRight: boolean = top || right;
 	const bottomRight: boolean = right || bottom;
 	const bottomLeft: boolean = bottom || left;
@@ -73,6 +72,10 @@ function parsePercentage(float: number = 0.5): PositionPercent {
 	return {primary: Math.round(float * 100) + "%", secondary: Math.round((1 - float) * 100) + "%"}
 }
 
+type valueType = number | string | undefined
+
+const {ReactBorderWrapperParent, ReactBorderWrapperBorderVerticalParent, ReactBorderWrapperCorner, ReactBorderWrapperBorderHorizontalParent, ReactBorderWrapperBorderChildren, ReactBorderWrapperBorderRightElement} = styles;
+
 const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.Element => {
 
 	const positions: Positions = determineLocations(props);
@@ -83,22 +86,22 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 	const bottomPosition: PositionPercent = positions.bottom ? parsePercentage(props.bottomPosition) : undefinedPosition;
 	const leftPosition: PositionPercent = positions.left ? parsePercentage(props.leftPosition) : undefinedPosition;
 
-	const topOffset: number | string | undefined = positions.top ? props.topOffset : undefined;
-	const rightOffset: number | string | undefined = positions.right ? props.rightOffset : undefined;
-	const bottomOffset: number | string | undefined = positions.bottom ? props.bottomOffset : undefined;
-	const leftOffset: number | string | undefined = positions.left ? props.leftOffset : undefined;
+	const topOffset: valueType = positions.top ? props.topOffset : undefined;
+	const rightOffset: valueType = positions.right ? props.rightOffset : undefined;
+	const bottomOffset: valueType = positions.bottom ? props.bottomOffset : undefined;
+	const leftOffset: valueType = positions.left ? props.leftOffset : undefined;
 
-	const topGap: number | string | undefined = positions.top ? props.topGap : undefined;
-	const rightGap: number | string | undefined = positions.right ? props.rightGap : undefined;
-	const bottomGap: number | string | undefined = positions.bottom ? props.bottomGap : undefined;
-	const leftGap: number | string | undefined = positions.left ? props.leftGap : undefined;
+	const topGap: valueType = positions.top ? props.topGap : undefined;
+	const rightGap: valueType = positions.right ? props.rightGap : undefined;
+	const bottomGap: valueType = positions.bottom ? props.bottomGap : undefined;
+	const leftGap: valueType = positions.left ? props.leftGap : undefined;
 
 	return (
-		<div className={styles.ReactBorderWrapperParent} style={props.style}>
+		<div className={ReactBorderWrapperParent} style={props.style}>
 
-			<div className={styles.ReactBorderWrapperBorderHorizontalParent}>
+			<div className={ReactBorderWrapperBorderHorizontalParent}>
 				<div
-					className={styles.ReactBorderWrapperCorner}
+					className={ReactBorderWrapperCorner}
 					style={{
 						borderTopLeftRadius: props.borderRadius,
 						borderTop: props.borderType,
@@ -140,7 +143,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					}}
 				/>
 				<div
-					className={styles.ReactBorderWrapperCorner}
+					className={ReactBorderWrapperCorner}
 					style={{
 						borderTopRightRadius: props.borderRadius,
 						borderTop: props.borderType,
@@ -157,9 +160,9 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 				/>
 			</div>
 
-			<div className={styles.ReactBorderWrapperBorderChildren}>
+			<div className={ReactBorderWrapperBorderChildren}>
 
-				<div className={styles.ReactBorderWrapperBorderVerticalParent}>
+				<div className={ReactBorderWrapperBorderVerticalParent}>
 					<div
 						style={{
 							borderLeft: props.borderType,
@@ -195,7 +198,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 					{props.children}
 				</div>
 
-				<div className={styles.ReactBorderWrapperBorderVerticalParent}>
+				<div className={ReactBorderWrapperBorderVerticalParent}>
 					<div
 						style={{
 							borderRight: props.borderType,
@@ -206,7 +209,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 						}}
 					/>
 					<div
-						className={styles.ReactBorderWrapperBorderRightElement}
+						className={ReactBorderWrapperBorderRightElement}
 						style={{
 							paddingTop: rightGap,
 							paddingBottom: rightGap,
@@ -227,7 +230,7 @@ const ReactBorderWrapper: React.FunctionComponent<Props> = (props: Props): JSX.E
 
 			</div>
 
-			<div className={styles.ReactBorderWrapperBorderHorizontalParent}>
+			<div className={ReactBorderWrapperBorderHorizontalParent}>
 				<div
 					style={{
 						borderBottomLeftRadius: props.borderRadius,
