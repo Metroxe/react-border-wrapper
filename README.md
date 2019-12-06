@@ -13,7 +13,7 @@
 
 ### npm
 ```bash
-npm install --save react-border-wrapper
+npm install react-border-wrapper
 ```
 
 ### yarn
@@ -49,7 +49,7 @@ class Example extends React.Component {
 | `borderRadius` | `string` `number` | Radius of each corner. This radius is added on top of the inner padding. Thus, a large radius will create a large distance between the top and bottom borders.
 | `borderColour` | `string` | CSS compatible string for the border colour
 | `borderType` | `string` | CSS compatible `LineStyle` string to change the border drawing style
-| `topElement` `rightElement` `bottomElement` `leftElement` | `Element` | JSX Element to be rendered sepcified side. If an element is not specified then all prop values for that side will be ignored.
+| `topElement` `rightElement` `bottomElement` `leftElement` | `Element` | JSX Element to be rendered at the specified side. If an element is not specified then all prop values for that side will be ignored.
 | `topPosition` `rightPosition` `leftPosition` `rightPosition` | `number` | A number between `0` and `1` to indicate a precentage (`0%` to `100%`) of where the component will be placed along the sides. Values greater than `1` or less than `0` will be at `1` and `0` respectively.
 | `topOffset` `rightOffset` `leftOffset` `rightOffset` | `string` `number` | Offset the component on the given side by this value. Use this to help center or position each component to your desired location.
 | `topGap` `rightGap` `bottomGap` `leftGap` | `string` `number` | Distance between the border and the position of the component to be rendered. 
